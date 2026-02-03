@@ -1,0 +1,5 @@
+file = open("example.txt", "w")
+file.write("Hello, World!\n")
+file.write("This is a test file created by the pyhton.\n")
+file.close()
+print("File written successfully.")
