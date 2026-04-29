@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h2>To-Do List</h2>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="/submittodoitem">
+        <label>Name:</label><br>
+        <input type="text" name="Itemname"><br><br>
+
+        <label>Description:</label><br>
+        <input type="text" name="ItemDescription"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
