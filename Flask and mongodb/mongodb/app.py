@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # MongoDB Atlas connection
-MONGO_URI = "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://<username>:<password>@cluster0.jvthxqj.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(MONGO_URI)
 
 db = client["test_db"]
@@ -14,6 +14,9 @@ collection = db["users"]
 @app.route("/")
 def index():
     return render_template("form.html", error=None)
+@app.route("/todo")
+def todo():
+    return render_template("todo.html", error=None)
 
 @app.route("/submit", methods=["POST"])
 def submit():
