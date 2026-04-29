@@ -33,6 +33,28 @@ def submit():
 
     except Exception as e:
         return render_template("form.html", error=str(e))
+    
+@app.route("/submittodoitem", methods=["POST"])
+def submit_todo_item():
+    try:
+        item_name = request.form.get("Itemname")
+        item_description = request.form.get("ItemDescription")
+
+        if not item_name or not item_description:
+            raise ValueError("Item Name and Description are required")
+        
+        db1 = client["todo_db"]
+        collection = db1["todo_items"]
+        # Insert the todo item into the database
+        collection.insert_one({
+            "name": item_name,
+            "description": item_description
+        })
+
+        return redirect(url_for("success"))
+
+    except Exception as e:
+        return render_template("todo.html", error=str(e))
 
 @app.route("/success")
 def success():
