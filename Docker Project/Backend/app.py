@@ -1,8 +1,11 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
+from dontenv import load_dotenv
 import os
 
 app = Flask(__name__)
+
+load_dotenv()  # Load environment variables from .env file
 
 # MongoDB Atlas connection
 MONGO_URI = os.getenv("MONGO_URL","mongodb://<USER>:<PASSWORD>@<CLUSTER>.mongodb.net/?retryWrites=true&w=majority")
