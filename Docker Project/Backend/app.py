@@ -8,7 +8,12 @@ app = Flask(__name__)
 load_dotenv()  # Load environment variables from .env file
 
 # MongoDB Atlas connection
-MONGO_URI = os.getenv("MONGO_URL","mongodb://<USER>:<PASSWORD>@<CLUSTER>.mongodb.net/?retryWrites=true&w=majority")
+MONGO_URI = os.getenv("MONGO_URL") # Get the MongoDB connection string from environment variables
+
+if not MONGO_URI:
+    raise ValueError("MONGO_URL environment variable is not set")
+
+
 client = MongoClient(MONGO_URI)
 
 db = client["test_db"]
