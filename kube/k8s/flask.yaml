@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp
+  namespace: demo
+spec:
+  selector:
+    matchLabels:
+      app: flaskapp
+  
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+    
+    spec:
+      containers:
+      - name: flaskapp
+  
+        image: docker.io/tharun17/tutedude_frontend:1
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        env:
+        - name: EXPRESS_API_URL
+          value: "http://express-service:5000"
+

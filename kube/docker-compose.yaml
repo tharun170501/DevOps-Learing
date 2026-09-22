@@ -1,0 +1,27 @@
+services:
+
+  flask-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      EXPRESS_API_URL: http://express-app:5000
+
+    depends_on:
+      - express-app
+
+
+  express-app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      MONGO_URI: ${MONGO_URI}
